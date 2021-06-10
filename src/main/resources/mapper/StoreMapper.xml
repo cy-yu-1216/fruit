@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.example.fruit.dao.IStoreDao">
+    <resultMap type="com.example.fruit.entity.Store" id="BaseResultMap"> </resultMap>
+    <select id="findByUserId" parameterType="com.example.fruit.entity.Store" resultMap="StoreResultMap">
+        SELECT fruit.fruit_id,fruit.fruit_name,fruit.fruit_interest,fruit.fruit_image,fruit.fruit_describe,fruit.fruit_category
+            FROM fruit,store
+            where fruit.fruit_id=store.fruit_id and store.id=#{id}
+        </select>
+    <select id="getStore" parameterType="com.example.fruit.entity.Store" resultMap="BaseResultMap">
+        SELECT * FROM store  where fruit_id=#{fruit_id} and id=#{id}
+     </select>
+    <insert id="storeFruit" parameterType="com.example.fruit.entity.Store">
+        INSERT INTO store(fruit_id,id) VALUES(#{fruit_id},#{id})
+    </insert>
+    <delete id="deleteStore" parameterType="com.example.fruit.entity.Store">
+        DELETE FROM store  where fruit_id=#{fruit_id} and id=#{id}
+    </delete>
+    <resultMap id="StoreResultMap" type="fruit">
+        <result property="fruit_id" column="fruit_id"/>
+        <result property="fruit_name" column="fruit_name"/>
+        <result property="fruit.interest" column="interest"/>
+        <result property="fruit_image" column="fruit_image"/>
+        <result property="fruit_describe" column="fruit_describe"/>
+        <result property="fruit_category" column="fruit_category"/>
+<!--        <association property="teacher" javaType="Teacher">-->
+<!--            <result property="name" column="tname"/>-->
+<!--        </association>-->
+    </resultMap>
+
+</mapper>

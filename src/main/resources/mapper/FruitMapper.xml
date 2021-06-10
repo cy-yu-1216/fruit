@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.example.fruit.dao.IFruitDao">
+    <resultMap type="com.example.fruit.entity.Fruit" id="BaseResultMap"> </resultMap>
+    <select id="searchAll" parameterType="com.example.fruit.entity.Fruit" resultMap="BaseResultMap">
+        SELECT * from fruit </select>
+    <select id="searchId" parameterType="com.example.fruit.entity.Fruit" resultMap="BaseResultMap">
+        SELECT * from fruit where fruit_id=#{fruit_id}</select>
+    <select id="searchCategory" parameterType="com.example.fruit.entity.Fruit" resultMap="BaseResultMap">
+        SELECT * from fruit where fruit_category=#{fruit_category}</select>
+
+    <update id="addInterest" parameterType="com.example.fruit.entity.Fruit">
+        UPDATE fruit set fruit_interest = fruit_interest + 1 where fruit_id=#{fruit_id}
+    </update>
+
+    <update id="reduceInterest" parameterType="com.example.fruit.entity.Fruit">
+        UPDATE fruit set fruit_interest = fruit_interest - 1 where fruit_id=#{fruit_id}
+    </update>
+
+
+</mapper>
+
